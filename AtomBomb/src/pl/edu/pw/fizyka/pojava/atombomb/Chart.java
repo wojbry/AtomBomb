@@ -64,7 +64,6 @@ public class Chart extends JPanel implements Runnable {
 			sym.neutrons1.clear();
 			sym.t+=sym.dt;
 			seria1.add(sym.t, sym.totalEnergy);
-			//System.out.println(sym.neutrons.size());
 			if(sym.numberOfFissioned>=sym.atoms.size())
 				stop();
 			try {
