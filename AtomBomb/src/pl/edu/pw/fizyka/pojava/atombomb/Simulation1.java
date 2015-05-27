@@ -116,16 +116,16 @@ public class Simulation1{
 					z=(int)Math.ceil(n.z/distanceBetweenAtoms);
 				
 				Index=calculateIndex(x,y,z,length);	
-				//System.out.println((n.distance(atoms.get(Index))));
+				
 				if(!atoms.get(Index).fissioned){
-					//System.out.println("yes");
+					
 					if(n.distance(atoms.get(Index))<crossSection){
 						atoms.get(Index).fissioned=true;
 						neutrons1.add(new Neutron(atoms.get(Index).x,atoms.get(Index).y,atoms.get(Index).z,10));
 						neutrons1.add(new Neutron(atoms.get(Index).x,atoms.get(Index).y,atoms.get(Index).z,10));
 						totalEnergy+=energy;
 						numberOfFissioned++;
-						//System.out.println(neutrons1.size());
+						
 					}
 				}
 			}
