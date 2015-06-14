@@ -14,30 +14,30 @@ import org.jfree.data.xy.XYSeriesCollection;
 public class Chart extends JPanel implements Runnable {
 	
 	public Thread thread;
-	public Simulation1 sym;
-	XYSeries seria1;
-	JFreeChart wykres;
-	public Chart(Simulation1 sym1) {
-		seria1=new XYSeries("Seria 1");
+	public Simulation sym;
+	XYSeries totalEnergy;
+	JFreeChart chart;
+	public Chart(Simulation sym1) {
+		totalEnergy=new XYSeries("Calkowita energia");
 		sym=sym1;
-		XYSeriesCollection serie = new XYSeriesCollection(seria1);
-		wykres = ChartFactory.createXYLineChart
+		XYSeriesCollection series = new XYSeriesCollection(totalEnergy);
+		chart = ChartFactory.createXYLineChart
                 ("E(t)",  // Title
-                  "Czas [s]",           // X-Axis label
+                  "Czas [mikros]",           // X-Axis label
                   "E [J]",           // Y-Axis label
-                  serie,          // Dataset
+                  series,          // Dataset
                   PlotOrientation.VERTICAL,        //Plot orientation
                   false,                //show legend
                   true,                // Show tooltips
                   false               //url show
                  );
-		 ChartPanel chartPanel = new ChartPanel(wykres);
+		 ChartPanel chartPanel = new ChartPanel(chart);
 		 setLayout(new BorderLayout());
 		 this.add(chartPanel, BorderLayout.CENTER);
 	}
 	
 	public void clear(){
-		seria1.clear();
+		totalEnergy.clear();
 	}
 	
 	public void start() {
@@ -58,13 +58,13 @@ public class Chart extends JPanel implements Runnable {
 	public void run() {
 		sym.placeAtoms();
 		while(thread!=null){			
-			sym.checkAtoms();
-			sym.checkNeutrons();
+			sym.iterateAtoms();
+			sym.iterateNeutrons();
 			sym.neutrons.addAll(sym.neutrons1);
 			sym.neutrons1.clear();
 			sym.t+=sym.dt;
-			seria1.add(sym.t, sym.totalEnergy);
-			if(sym.numberOfFissioned>=sym.atoms.size())
+			totalEnergy.add(sym.t*1E6, sym.totalEnergy);
+			if(sym.numberOfFissioned>=0.7*sym.atoms.size())
 				stop();
 			try {
 				Thread.sleep(0);

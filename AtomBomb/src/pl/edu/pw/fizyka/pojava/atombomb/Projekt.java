@@ -34,7 +34,6 @@ public class Projekt {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	Chart wykres;
-	Simulation1 sym;
 
 	/**
 	 * Launch the application.
@@ -68,8 +67,7 @@ public class Projekt {
 		frame.setBounds(100, 100, 1100, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		sym = new Simulation1(1, 0.2, 0.0000005, 1, 0.75);
-		wykres=new Chart(sym);
+		wykres=new Chart(new Simulation(1, 0.4, 0.0000001, 0.4, 2.736));
 		
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -113,7 +111,7 @@ public class Projekt {
 		ActionListener startListener = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				wykres.clear();
-				sym.refresh(Double.parseDouble(textField_1.getText()), Double.parseDouble(textField_2.getText()), Double.parseDouble(textField_3.getText()), Integer.parseInt(textField_4.getText()), Double.parseDouble(textField_5.getText()));
+				wykres.sym.refresh(Double.parseDouble(textField_1.getText()), Double.parseDouble(textField_2.getText()), Double.parseDouble(textField_3.getText()), Double.parseDouble(textField_4.getText()), Double.parseDouble(textField_5.getText()));
 				wykres.start();
 			}
 		};
@@ -166,7 +164,7 @@ public class Projekt {
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setText("0.2");
+		textField_2.setText("0.4"); //Angsrtem
 		
 		JTextArea txtrPrawdopodobienstwoNaturalnegoRozpadu = new JTextArea();
 		txtrPrawdopodobienstwoNaturalnegoRozpadu.setBackground(SystemColor.menu);
@@ -176,7 +174,7 @@ public class Projekt {
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setText("0.0000005");
+		textField_3.setText("0.0000001");
 		
 		JTextArea txtrMasaProbki = new JTextArea();
 		txtrMasaProbki.setBackground(SystemColor.menu);
@@ -192,11 +190,11 @@ public class Projekt {
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setText("500000");
+		textField_4.setText("0.4");  //gram*10^-16
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setText("1");
+		textField_5.setText("2.7363");  //Angsrtem
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -317,7 +315,7 @@ public class Projekt {
 		tabbedPane.setEnabledAt(0, true);
 		
 		//JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
-		//tabbedPane.addTab("E(m)", null, tabbedPane_2, null);
+		//tabbedPane.addTab("E(m)", null, wykres.wykres2, null);
 		frame.getContentPane().setLayout(groupLayout);
 	}
 }

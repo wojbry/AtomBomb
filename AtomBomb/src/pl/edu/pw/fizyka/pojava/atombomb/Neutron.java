@@ -3,7 +3,7 @@ package pl.edu.pw.fizyka.pojava.atombomb;
 public class Neutron {
 	double x,y,z;
 	double vx,vy,vz;
-	public Neutron(double a, double b, double c, double v) {
+	public Neutron(double a, double b, double c, double v) {  //[a,b,c]=[m]; [v]=[m/s]
 		x=a;
 		y=b;
 		z=c;
