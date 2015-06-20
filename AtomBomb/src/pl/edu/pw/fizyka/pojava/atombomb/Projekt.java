@@ -2,23 +2,31 @@ package pl.edu.pw.fizyka.pojava.atombomb;
 
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JMenuItem;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
+
 import java.awt.Color;
+
 import javax.swing.JTextArea;
+
 import java.awt.Font;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JRadioButton;
 
 
@@ -33,6 +41,7 @@ public class Projekt {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	JButton btnPauza;
 	Chart wykres;
 
 	/**
@@ -67,7 +76,7 @@ public class Projekt {
 		frame.setBounds(100, 100, 1100, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		wykres=new Chart(new Simulation(1, 0.4, 0.0000001, 0.4, 2.736));
+		wykres=new Chart(new Simulation(1, 0.4, 0.0000001, 4, 2.736)); 
 		
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -106,13 +115,27 @@ public class Projekt {
 		
 		JButton btnSprawd = new JButton("SprawdŸ!");
 		
+		ActionListener sprawdzListener = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				double masa = wykres.sym.totalEnergy/20000000;
+				textField.setText(Double.toString(masa));
+			}
+		};
+		
+		btnSprawd.addActionListener(sprawdzListener);
+		
 		JButton btnStart = new JButton("Start");
 		
 		ActionListener startListener = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				wykres.clear();
-				wykres.sym.refresh(Double.parseDouble(textField_1.getText()), Double.parseDouble(textField_2.getText()), Double.parseDouble(textField_3.getText()), Double.parseDouble(textField_4.getText()), Double.parseDouble(textField_5.getText()));
-				wykres.start();
+				wykres.stop();
+				try{
+					wykres.clear();
+					wykres.sym.refresh(Double.parseDouble(textField_1.getText()), Double.parseDouble(textField_2.getText()), Double.parseDouble(textField_3.getText()), Double.parseDouble(textField_4.getText()), Double.parseDouble(textField_5.getText()));
+					wykres.start();
+				}   catch(NumberFormatException a){
+					JOptionPane.showMessageDialog(frame, "Z³y format parametru!", null, JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		};
 		
@@ -128,9 +151,37 @@ public class Projekt {
 		
 		btnStop.addActionListener(stopListener);
 		
-		JButton btnPauza = new JButton("Pauza");
+		btnPauza = new JButton("||");
 		
-		JButton btnCofnij = new JButton("Cofnij");
+		ActionListener PauzaListener = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				if (btnPauza.getText().equals("||")){
+					wykres.stop();
+					btnPauza.setText("|>");
+				}
+				else{
+					btnPauza.setText("||");
+					wykres.start();
+				}
+			}
+		};
+		
+		btnPauza.addActionListener(PauzaListener);
+		
+		JButton btnCofnij = new JButton("Ustaw dane dla urawnu 235");
+		
+		ActionListener UstawDaneListener = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				textField_1.setText("1");
+				textField_2.setText("0.4");
+				textField_3.setText("0.0000001");
+				textField_4.setText("4");
+				textField_5.setText("2.7363");
+				JOptionPane.showMessageDialog(frame, "Ze wzglêdu na ograniczenie masy (masa krytyczna urznu 235 to oko³o 52 kg) znacz¹co zosta³ zwiêkszony przekrój czynny atomu.", null, JOptionPane.INFORMATION_MESSAGE);
+			}
+		};
+		
+		btnCofnij.addActionListener(UstawDaneListener);
 		
 		txtWybrJednostkiE = new JTextField();
 		txtWybrJednostkiE.setBackground(SystemColor.control);
@@ -159,12 +210,12 @@ public class Projekt {
 		txtrPrzekrojCzynny.setBackground(SystemColor.menu);
 		txtrPrzekrojCzynny.setFont(new Font("Calibri", Font.PLAIN, 12));
 		txtrPrzekrojCzynny.setEditable(false);
-		txtrPrzekrojCzynny.setText("przekrój czynny");
+		txtrPrzekrojCzynny.setText("promieñ przekroju czynnego:");
 		
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setText("0.4"); //Angsrtem
+		textField_2.setText("0.4"); //Angstrem
 		
 		JTextArea txtrPrawdopodobienstwoNaturalnegoRozpadu = new JTextArea();
 		txtrPrawdopodobienstwoNaturalnegoRozpadu.setBackground(SystemColor.menu);
@@ -190,7 +241,7 @@ public class Projekt {
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setText("0.4");  //gram*10^-16
+		textField_4.setText("4");  //gram*10^-16
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
@@ -314,8 +365,6 @@ public class Projekt {
 		tabbedPane.addTab("E(t)", null, wykres, null);
 		tabbedPane.setEnabledAt(0, true);
 		
-		//JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
-		//tabbedPane.addTab("E(m)", null, wykres.wykres2, null);
 		frame.getContentPane().setLayout(groupLayout);
 	}
 }
