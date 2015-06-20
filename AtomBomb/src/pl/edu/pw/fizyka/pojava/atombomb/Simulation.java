@@ -14,8 +14,9 @@ import javax.swing.JFrame;
 public class Simulation{
 	/*do wyboru przez uzytkownika: energia pojedynczego rozpadu, przekroj czynny,
 	 *  prawdopodobienstwo naturalnego rozpadu, masa probki, odleglosc miedzy atomami */
-	double energy;
+	double energyOfOneFission;
 	double totalEnergy;
+	double energy;
 	double crossSection;
 	double likelyhoodOfDecay;
 	double mass;  //gram
@@ -32,7 +33,7 @@ public class Simulation{
 	int Index;
 	
 	public Simulation(double en, double cS, double lOD, double m, double dBA){
-		energy=en;
+		energyOfOneFission=en;
 		totalEnergy=0;
 		crossSection=cS*1E-10;
 		likelyhoodOfDecay=lOD;
@@ -49,7 +50,7 @@ public class Simulation{
 	}
 	
 	public void refresh(double en, double cS, double lOD, double m, double dBA){
-		energy=en;
+		energyOfOneFission=en;
 		totalEnergy=0;
 		crossSection=cS*1E-10;
 		likelyhoodOfDecay=lOD;
@@ -88,7 +89,8 @@ public class Simulation{
 				neutrons.add(new Neutron(a.x,a.y,a.z,2186));
 				neutrons.add(new Neutron(a.x,a.y,a.z,2186));
 				neutrons.add(new Neutron(a.x,a.y,a.z,2186));
-				totalEnergy+=energy;
+				totalEnergy+=energyOfOneFission;
+				energy+=energyOfOneFission;
 				numberOfFissioned++;
 			}
 		}
@@ -122,7 +124,8 @@ public class Simulation{
 						neutrons1.add(new Neutron(atoms.get(Index).x,atoms.get(Index).y,atoms.get(Index).z,2186));
 						neutrons1.add(new Neutron(atoms.get(Index).x,atoms.get(Index).y,atoms.get(Index).z,2186));
 						neutrons1.add(new Neutron(atoms.get(Index).x,atoms.get(Index).y,atoms.get(Index).z,2186));
-						totalEnergy+=energy;
+						totalEnergy+=energyOfOneFission;
+						energy+=energyOfOneFission;
 						numberOfFissioned++;
 					}
 				}
