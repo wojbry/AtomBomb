@@ -1,6 +1,7 @@
 package pl.edu.pw.fizyka.pojava.atombomb;
 
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,7 +12,6 @@ import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JMenuItem;
-import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 
 import java.awt.Color;
@@ -30,12 +30,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 
 
-
+/*
+ * Author: Joanna
+ */
 public class Projekt {
 
 	JFrame frame;
 	private JTextField textField;
-	private JTextField txtWybrJednostkiE;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -94,7 +95,8 @@ public class Projekt {
 		JMenuItem mntmWybrJzyka = new JMenuItem("Wybor jezyka");
 		mnNewMenu.add(mntmWybrJzyka);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JPanel panelWykres = new JPanel();
+		panelWykres.setLayout(new BorderLayout());
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
@@ -117,7 +119,7 @@ public class Projekt {
 		
 		ActionListener sprawdzListener = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				double masa = wykres.sym.totalEnergy/20000000;
+				double masa = wykres.sym.totalEnergy*10E6*1.602*10E-19/20000000;
 				textField.setText(Double.toString(masa));
 			}
 		};
@@ -172,7 +174,7 @@ public class Projekt {
 		
 		ActionListener UstawDaneListener = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				textField_1.setText("1");
+				textField_1.setText("172");
 				textField_2.setText("0.4");
 				textField_3.setText("0.0000001");
 				textField_4.setText("4");
@@ -183,34 +185,24 @@ public class Projekt {
 		
 		btnCofnij.addActionListener(UstawDaneListener);
 		
-		txtWybrJednostkiE = new JTextField();
-		txtWybrJednostkiE.setBackground(SystemColor.control);
-		txtWybrJednostkiE.setFont(new Font("Calibri", Font.BOLD, 13));
-		txtWybrJednostkiE.setEditable(false);
-		txtWybrJednostkiE.setText("Wybór jednostki E:");
-		txtWybrJednostkiE.setColumns(10);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("MeV");
-		rdbtnNewRadioButton.setFont(new Font("Calibri", Font.PLAIN, 13));
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("J");
-		rdbtnNewRadioButton_1.setFont(new Font("Calibri", Font.PLAIN, 13));
 		
 		JTextArea txtrEnergiaPojedynczegoRozpadu = new JTextArea();
 		txtrEnergiaPojedynczegoRozpadu.setBackground(SystemColor.menu);
 		txtrEnergiaPojedynczegoRozpadu.setFont(new Font("Calibri", Font.PLAIN, 12));
 		txtrEnergiaPojedynczegoRozpadu.setEditable(false);
-		txtrEnergiaPojedynczegoRozpadu.setText("energia pojedynczego rozpadu:");
+		txtrEnergiaPojedynczegoRozpadu.setText("energia pojedynczego rozpadu [MeV]:");
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setText("1");
+		textField_1.setText("172");
 		
 		JTextArea txtrPrzekrojCzynny = new JTextArea();
 		txtrPrzekrojCzynny.setBackground(SystemColor.menu);
 		txtrPrzekrojCzynny.setFont(new Font("Calibri", Font.PLAIN, 12));
 		txtrPrzekrojCzynny.setEditable(false);
-		txtrPrzekrojCzynny.setText("promieñ przekroju czynnego:");
+		txtrPrzekrojCzynny.setText("promieñ przekroju czynnego [Angstrem]:");
 		
 		
 		textField_2 = new JTextField();
@@ -220,7 +212,7 @@ public class Projekt {
 		JTextArea txtrPrawdopodobienstwoNaturalnegoRozpadu = new JTextArea();
 		txtrPrawdopodobienstwoNaturalnegoRozpadu.setBackground(SystemColor.menu);
 		txtrPrawdopodobienstwoNaturalnegoRozpadu.setEditable(false);
-		txtrPrawdopodobienstwoNaturalnegoRozpadu.setText("prawdop. naturalnego rozpadu");
+		txtrPrawdopodobienstwoNaturalnegoRozpadu.setText("prawdop. naturalnego rozpadu:");
 		txtrPrawdopodobienstwoNaturalnegoRozpadu.setFont(new Font("Calibri", Font.PLAIN, 12));
 		
 		textField_3 = new JTextField();
@@ -231,13 +223,13 @@ public class Projekt {
 		txtrMasaProbki.setBackground(SystemColor.menu);
 		txtrMasaProbki.setFont(new Font("Calibri", Font.PLAIN, 12));
 		txtrMasaProbki.setEditable(false);
-		txtrMasaProbki.setText("masa próbki:");
+		txtrMasaProbki.setText("masa próbki [gram*10^-16] (max. 10)]:");
 		
 		JTextArea txtrOdlegloscMiedzyAtomami = new JTextArea();
 		txtrOdlegloscMiedzyAtomami.setBackground(SystemColor.menu);
 		txtrOdlegloscMiedzyAtomami.setFont(new Font("Calibri", Font.PLAIN, 12));
 		txtrOdlegloscMiedzyAtomami.setEditable(false);
-		txtrOdlegloscMiedzyAtomami.setText("odleg\u0142o\u015B\u0107 mi\u0119dzy atomami:");
+		txtrOdlegloscMiedzyAtomami.setText("odleg\u0142o\u015B\u0107 mi\u0119dzy atomami [Angstrem]:");
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
@@ -245,7 +237,7 @@ public class Projekt {
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setText("2.7363");  //Angsrtem
+		textField_5.setText("2.7363");  //Angstrem
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -264,7 +256,7 @@ public class Projekt {
 										.addComponent(btnPauza)
 										.addGap(18)
 										.addComponent(btnCofnij))
-									.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
+									.addComponent(panelWykres, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
 								.addGap(49))
 							.addGroup(groupLayout.createSequentialGroup()
 								.addComponent(txtrIleWglaTrzeba, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE)
@@ -284,24 +276,24 @@ public class Projekt {
 									.addComponent(txtrPrzekrojCzynny, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)))
 							.addGroup(groupLayout.createSequentialGroup()
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 									.addComponent(txtrPrawdopodobienstwoNaturalnegoRozpadu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(txtrMasaProbki, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+									.addComponent(txtrMasaProbki, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-									.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)))
 							.addComponent(panel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
 						.addComponent(txtrOdlegloscMiedzyAtomami, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(rdbtnNewRadioButton)
+							//.addComponent(rdbtnNewRadioButton)
 							.addGap(22)
-							.addComponent(rdbtnNewRadioButton_1))
-						.addComponent(txtWybrJednostkiE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							)
+						)
 					.addGap(18))
 		);
 		groupLayout.setVerticalGroup(
@@ -309,7 +301,7 @@ public class Projekt {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+						.addComponent(panelWykres, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(26)
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -345,14 +337,16 @@ public class Projekt {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtrIleWglaTrzeba, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtWybrJednostkiE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
+						//.addComponent(txtWybrJednostkiE, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						)
+					//.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnSprawd)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtrKg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(rdbtnNewRadioButton_1)
-						.addComponent(rdbtnNewRadioButton))
+						//.addComponent(rdbtnNewRadioButton_1)
+						//.addComponent(rdbtnNewRadioButton))
+						)
 					.addGap(17))
 		);
 		
@@ -362,8 +356,8 @@ public class Projekt {
 		txtrNastawy.setText("Nastawy");
 		panel.add(txtrNastawy);
 		
-		tabbedPane.addTab("E(t)", null, wykres, null);
-		tabbedPane.setEnabledAt(0, true);
+		panelWykres.add(wykres, BorderLayout.CENTER);
+		
 		
 		frame.getContentPane().setLayout(groupLayout);
 	}

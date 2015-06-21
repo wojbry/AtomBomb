@@ -11,9 +11,11 @@ import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+/*
+ * Author: Wojtek
+ */
+
 public class Simulation{
-	/*do wyboru przez uzytkownika: energia pojedynczego rozpadu, przekroj czynny,
-	 *  prawdopodobienstwo naturalnego rozpadu, masa probki, odleglosc miedzy atomami */
 	double energyOfOneFission;
 	double totalEnergy;
 	double energy;

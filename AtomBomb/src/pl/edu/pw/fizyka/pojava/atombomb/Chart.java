@@ -29,7 +29,7 @@ public class Chart extends JPanel implements Runnable {
 		chartTotalEnergy = ChartFactory.createXYLineChart
                 ("E(t)",  // Title
                   "Czas [mikros]",           // X-Axis label
-                  "E",           // Y-Axis label
+                  "E [MeV]",           // Y-Axis label
                   serieTotalEnergy,          // Dataset
                   PlotOrientation.VERTICAL,        //Plot orientation
                   true,                //show legend
@@ -39,7 +39,7 @@ public class Chart extends JPanel implements Runnable {
 		chartEnergy = ChartFactory.createXYLineChart
                 ("E(t)",  // Title
                   "Czas [mikros]",           // X-Axis label
-                  "E",           // Y-Axis label
+                  "E [MeV]",           // Y-Axis label
                   serieEnergy,          // Dataset
                   PlotOrientation.VERTICAL,        //Plot orientation
                   true,                //show legend
