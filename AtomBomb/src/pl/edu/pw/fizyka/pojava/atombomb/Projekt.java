@@ -105,7 +105,7 @@ public class Projekt {
 		txtrIleWglaTrzeba.setBackground(SystemColor.control);
 		txtrIleWglaTrzeba.setEditable(false);
 		txtrIleWglaTrzeba.setFont(new Font("Calibri", Font.BOLD, 13));
-		txtrIleWglaTrzeba.setText("Ile wêgla trzeba spaliæ, by uzyskaæ tyle samo energii?");
+		txtrIleWglaTrzeba.setText("Ile wÃªgla trzeba spaliÃ¦, by uzyskaÃ¦ tyle samo energii?");
 		
 		textField = new JTextField();
 		textField.setText("");
@@ -115,7 +115,7 @@ public class Projekt {
 		txtrKg.setFont(new Font("Calibri", Font.PLAIN, 13));
 		txtrKg.setText("kg");
 		
-		JButton btnSprawd = new JButton("SprawdŸ!");
+		JButton btnSprawd = new JButton("SprawdÅ¸!");
 		
 		ActionListener sprawdzListener = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -136,7 +136,7 @@ public class Projekt {
 					wykres.sym.refresh(Double.parseDouble(textField_1.getText()), Double.parseDouble(textField_2.getText()), Double.parseDouble(textField_3.getText()), Double.parseDouble(textField_4.getText()), Double.parseDouble(textField_5.getText()));
 					wykres.start();
 				}   catch(NumberFormatException a){
-					JOptionPane.showMessageDialog(frame, "Z³y format parametru!", null, JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "ZÂ³y format parametru!", null, JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		};
@@ -170,7 +170,7 @@ public class Projekt {
 		
 		btnPauza.addActionListener(PauzaListener);
 		
-		JButton btnCofnij = new JButton("Ustaw dane dla urawnu 235");
+		JButton btnCofnij = new JButton("Ustaw dane dla uranu 235");
 		
 		ActionListener UstawDaneListener = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -179,7 +179,7 @@ public class Projekt {
 				textField_3.setText("0.0000001");
 				textField_4.setText("4");
 				textField_5.setText("2.7363");
-				JOptionPane.showMessageDialog(frame, "Ze wzglêdu na ograniczenie masy (masa krytyczna urznu 235 to oko³o 52 kg) znacz¹co zosta³ zwiêkszony przekrój czynny atomu.", null, JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(frame, "Ze wzglÃªdu na ograniczenie masy (masa krytyczna uranu 235 to okoÂ³o 52 kg) znaczÂ¹co zostaÂ³ zwiÃªkszony przekrÃ³j czynny atomu.", null, JOptionPane.INFORMATION_MESSAGE);
 			}
 		};
 		
@@ -202,7 +202,7 @@ public class Projekt {
 		txtrPrzekrojCzynny.setBackground(SystemColor.menu);
 		txtrPrzekrojCzynny.setFont(new Font("Calibri", Font.PLAIN, 12));
 		txtrPrzekrojCzynny.setEditable(false);
-		txtrPrzekrojCzynny.setText("promieñ przekroju czynnego [Angstrem]:");
+		txtrPrzekrojCzynny.setText("promieÃ± przekroju czynnego [Angstrem]:");
 		
 		
 		textField_2 = new JTextField();
@@ -223,7 +223,7 @@ public class Projekt {
 		txtrMasaProbki.setBackground(SystemColor.menu);
 		txtrMasaProbki.setFont(new Font("Calibri", Font.PLAIN, 12));
 		txtrMasaProbki.setEditable(false);
-		txtrMasaProbki.setText("masa próbki [gram*10^-16] (max. 10)]:");
+		txtrMasaProbki.setText("masa prÃ³bki [gram*10^-16] (max. 10)]:");
 		
 		JTextArea txtrOdlegloscMiedzyAtomami = new JTextArea();
 		txtrOdlegloscMiedzyAtomami.setBackground(SystemColor.menu);
